@@ -1,0 +1,17 @@
+.git
+.env*
+**/.env*
+**/node_modules
+**/.pnpm-store
+**/.venv
+**/__pycache__
+**/.pytest_cache
+**/*.db
+**/*.log
+**/test-results
+**/playwright-report
+frontend/src/test
+frontend/tests
+backend/tests
+data
+docs

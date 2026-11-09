@@ -1,0 +1,934 @@
+{
+  "configuration": {
+    "seed_by_scenario": {
+      "healthy": 17,
+      "leveraged": 23,
+      "volatile": 31
+    },
+    "max_reflections": 3,
+    "cases": 24,
+    "faults": [
+      "financial current ratio overwritten to 999",
+      "financial finding assigned missing evidence",
+      "market score overwritten to 99"
+    ],
+    "scope": "Controlled deterministic software fault recovery. The single baseline intentionally has one specialist and cannot emit a full score. This does not estimate real financial predictive accuracy."
+  },
+  "results": [
+    {
+      "scenario": "healthy",
+      "mode": "single",
+      "injected_faults": false,
+      "metrics": {
+        "numerical_consistency": 1.0,
+        "evidence_coverage": 1.0,
+        "unsupported_claim_rate": 0.0,
+        "contradiction_detection": 0,
+        "issue_resolution_rate": null,
+        "classification_consistency": null,
+        "output_completeness": 0.2,
+        "processing_seconds": 0.057366899971384555,
+        "llm_tokens": 0,
+        "cost_usd": 0,
+        "overall_score": null,
+        "detection_eligible": false
+      },
+      "detected": [],
+      "resolved": [],
+      "iterations": 0
+    },
+    {
+      "scenario": "healthy",
+      "mode": "multi",
+      "injected_faults": false,
+      "metrics": {
+        "numerical_consistency": 1.0,
+        "evidence_coverage": 1.0,
+        "unsupported_claim_rate": 0.0,
+        "contradiction_detection": 0,
+        "issue_resolution_rate": null,
+        "classification_consistency": 1,
+        "output_completeness": 1.0,
+        "processing_seconds": 0.05666740000015125,
+        "llm_tokens": 0,
+        "cost_usd": 0,
+        "overall_score": 4.3937,
+        "detection_eligible": false
+      },
+      "detected": [],
+      "resolved": [],
+      "iterations": 0
+    },
+    {
+      "scenario": "healthy",
+      "mode": "critic",
+      "injected_faults": false,
+      "metrics": {
+        "numerical_consistency": 1.0,
+        "evidence_coverage": 1.0,
+        "unsupported_claim_rate": 0.0,
+        "contradiction_detection": 0,
+        "issue_resolution_rate": null,
+        "classification_consistency": 1,
+        "output_completeness": 1.0,
+        "processing_seconds": 0.019251600024290383,
+        "llm_tokens": 0,
+        "cost_usd": 0,
+        "overall_score": 4.3937,
+        "detection_eligible": true
+      },
+      "detected": [
+        {
+          "id": "data:unverified_source",
+          "agent_id": "data",
+          "severity": "warning",
+          "rule": "unverified_source",
+          "evidence": [],
+          "correction": "Independently verify the supplied financial evidence",
+          "correctable": false
+        }
+      ],
+      "resolved": [],
+      "iterations": 0
+    },
+    {
+      "scenario": "healthy",
+      "mode": "reflection",
+      "injected_faults": false,
+      "metrics": {
+        "numerical_consistency": 1.0,
+        "evidence_coverage": 1.0,
+        "unsupported_claim_rate": 0.0,
+        "contradiction_detection": 0,
+        "issue_resolution_rate": null,
+        "classification_consistency": 1,
+        "output_completeness": 1.0,
+        "processing_seconds": 0.017419999989215285,
+        "llm_tokens": 0,
+        "cost_usd": 0,
+        "overall_score": 4.3937,
+        "detection_eligible": true
+      },
+      "detected": [
+        {
+          "id": "data:unverified_source",
+          "agent_id": "data",
+          "severity": "warning",
+          "rule": "unverified_source",
+          "evidence": [],
+          "correction": "Independently verify the supplied financial evidence",
+          "correctable": false
+        }
+      ],
+      "resolved": [],
+      "iterations": 0
+    },
+    {
+      "scenario": "healthy",
+      "mode": "single",
+      "injected_faults": true,
+      "metrics": {
+        "numerical_consistency": 0.9375,
+        "evidence_coverage": 0.6666666666666666,
+        "unsupported_claim_rate": 0.33333333333333337,
+        "contradiction_detection": 0,
+        "issue_resolution_rate": null,
+        "classification_consistency": null,
+        "output_completeness": 0.2,
+        "processing_seconds": 0.011720299953594804,
+        "llm_tokens": 0,
+        "cost_usd": 0,
+        "overall_score": null,
+        "detection_eligible": false
+      },
+      "detected": [],
+      "resolved": [],
+      "iterations": 0
+    },
+    {
+      "scenario": "healthy",
+      "mode": "multi",
+      "injected_faults": true,
+      "metrics": {
+        "numerical_consistency": 0.9607843137254902,
+        "evidence_coverage": 0.9333333333333333,
+        "unsupported_claim_rate": 0.06666666666666665,
+        "contradiction_detection": 0,
+        "issue_resolution_rate": null,
+        "classification_consistency": 1,
+        "output_completeness": 1.0,
+        "processing_seconds": 0.01430189999518916,
+        "llm_tokens": 0,
+        "cost_usd": 0,
+        "overall_score": 28.1957,
+        "detection_eligible": false
+      },
+      "detected": [],
+      "resolved": [],
+      "iterations": 0
+    },
+    {
+      "scenario": "healthy",
+      "mode": "critic",
+      "injected_faults": true,
+      "metrics": {
+        "numerical_consistency": 0.9607843137254902,
+        "evidence_coverage": 0.9333333333333333,
+        "unsupported_claim_rate": 0.06666666666666665,
+        "contradiction_detection": 1,
+        "issue_resolution_rate": 0.0,
+        "classification_consistency": 1,
+        "output_completeness": 1.0,
+        "processing_seconds": 0.020570199994836003,
+        "llm_tokens": 0,
+        "cost_usd": 0,
+        "overall_score": 28.1957,
+        "detection_eligible": true
+      },
+      "detected": [
+        {
+          "id": "financial:metric_mismatch:current_ratio",
+          "agent_id": "financial",
+          "severity": "error",
+          "rule": "metric_mismatch:current_ratio",
+          "evidence": [
+            "statements:2"
+          ],
+          "correction": "Recompute affected financial metric",
+          "correctable": true
+        },
+        {
+          "id": "financial:unsupported:financial:debt_to_assets",
+          "agent_id": "financial",
+          "severity": "error",
+          "rule": "unsupported:financial:debt_to_assets",
+          "evidence": [
+            "injected:missing-source"
+          ],
+          "correction": "Remove unsupported finding or attach actual evidence",
+          "correctable": true
+        },
+        {
+          "id": "market:score_mismatch",
+          "agent_id": "market",
+          "severity": "error",
+          "rule": "score_mismatch",
+          "evidence": [],
+          "correction": "Recompute score from original inputs",
+          "correctable": true
+        },
+        {
+          "id": "liquidity:contradiction:current_ratio",
+          "agent_id": "liquidity",
+          "severity": "error",
+          "rule": "contradiction:current_ratio",
+          "evidence": [
+            "statements:2"
+          ],
+          "correction": "Reconcile shared ratio against original statement",
+          "correctable": true
+        },
+        {
+          "id": "data:unverified_source",
+          "agent_id": "data",
+          "severity": "warning",
+          "rule": "unverified_source",
+          "evidence": [],
+          "correction": "Independently verify the supplied financial evidence",
+          "correctable": false
+        }
+      ],
+      "resolved": [],
+      "iterations": 0
+    },
+    {
+      "scenario": "healthy",
+      "mode": "reflection",
+      "injected_faults": true,
+      "metrics": {
+        "numerical_consistency": 1.0,
+        "evidence_coverage": 1.0,
+        "unsupported_claim_rate": 0.0,
+        "contradiction_detection": 1,
+        "issue_resolution_rate": 1.0,
+        "classification_consistency": 1,
+        "output_completeness": 1.0,
+        "processing_seconds": 0.05026049999287352,
+        "llm_tokens": 0,
+        "cost_usd": 0,
+        "overall_score": 4.3937,
+        "detection_eligible": true
+      },
+      "detected": [
+        {
+          "id": "financial:metric_mismatch:current_ratio",
+          "agent_id": "financial",
+          "severity": "error",
+          "rule": "metric_mismatch:current_ratio",
+          "evidence": [
+            "statements:2"
+          ],
+          "correction": "Recompute affected financial metric",
+          "correctable": true
+        },
+        {
+          "id": "financial:unsupported:financial:debt_to_assets",
+          "agent_id": "financial",
+          "severity": "error",
+          "rule": "unsupported:financial:debt_to_assets",
+          "evidence": [
+            "injected:missing-source"
+          ],
+          "correction": "Remove unsupported finding or attach actual evidence",
+          "correctable": true
+        },
+        {
+          "id": "market:score_mismatch",
+          "agent_id": "market",
+          "severity": "error",
+          "rule": "score_mismatch",
+          "evidence": [],
+          "correction": "Recompute score from original inputs",
+          "correctable": true
+        },
+        {
+          "id": "liquidity:contradiction:current_ratio",
+          "agent_id": "liquidity",
+          "severity": "error",
+          "rule": "contradiction:current_ratio",
+          "evidence": [
+            "statements:2"
+          ],
+          "correction": "Reconcile shared ratio against original statement",
+          "correctable": true
+        },
+        {
+          "id": "data:unverified_source",
+          "agent_id": "data",
+          "severity": "warning",
+          "rule": "unverified_source",
+          "evidence": [],
+          "correction": "Independently verify the supplied financial evidence",
+          "correctable": false
+        }
+      ],
+      "resolved": [
+        "financial:metric_mismatch:current_ratio",
+        "financial:unsupported:financial:debt_to_assets",
+        "liquidity:contradiction:current_ratio",
+        "market:score_mismatch"
+      ],
+      "iterations": 1
+    },
+    {
+      "scenario": "leveraged",
+      "mode": "single",
+      "injected_faults": false,
+      "metrics": {
+        "numerical_consistency": 1.0,
+        "evidence_coverage": 1.0,
+        "unsupported_claim_rate": 0.0,
+        "contradiction_detection": 0,
+        "issue_resolution_rate": null,
+        "classification_consistency": null,
+        "output_completeness": 0.2,
+        "processing_seconds": 0.012423900014255196,
+        "llm_tokens": 0,
+        "cost_usd": 0,
+        "overall_score": null,
+        "detection_eligible": false
+      },
+      "detected": [],
+      "resolved": [],
+      "iterations": 0
+    },
+    {
+      "scenario": "leveraged",
+      "mode": "multi",
+      "injected_faults": false,
+      "metrics": {
+        "numerical_consistency": 1.0,
+        "evidence_coverage": 1.0,
+        "unsupported_claim_rate": 0.0,
+        "contradiction_detection": 0,
+        "issue_resolution_rate": null,
+        "classification_consistency": 1,
+        "output_completeness": 1.0,
+        "processing_seconds": 0.01462919998448342,
+        "llm_tokens": 0,
+        "cost_usd": 0,
+        "overall_score": 70.3394,
+        "detection_eligible": false
+      },
+      "detected": [],
+      "resolved": [],
+      "iterations": 0
+    },
+    {
+      "scenario": "leveraged",
+      "mode": "critic",
+      "injected_faults": false,
+      "metrics": {
+        "numerical_consistency": 1.0,
+        "evidence_coverage": 1.0,
+        "unsupported_claim_rate": 0.0,
+        "contradiction_detection": 0,
+        "issue_resolution_rate": null,
+        "classification_consistency": 1,
+        "output_completeness": 1.0,
+        "processing_seconds": 0.01877510000485927,
+        "llm_tokens": 0,
+        "cost_usd": 0,
+        "overall_score": 70.3394,
+        "detection_eligible": true
+      },
+      "detected": [
+        {
+          "id": "data:unverified_source",
+          "agent_id": "data",
+          "severity": "warning",
+          "rule": "unverified_source",
+          "evidence": [],
+          "correction": "Independently verify the supplied financial evidence",
+          "correctable": false
+        }
+      ],
+      "resolved": [],
+      "iterations": 0
+    },
+    {
+      "scenario": "leveraged",
+      "mode": "reflection",
+      "injected_faults": false,
+      "metrics": {
+        "numerical_consistency": 1.0,
+        "evidence_coverage": 1.0,
+        "unsupported_claim_rate": 0.0,
+        "contradiction_detection": 0,
+        "issue_resolution_rate": null,
+        "classification_consistency": 1,
+        "output_completeness": 1.0,
+        "processing_seconds": 0.020559299970045686,
+        "llm_tokens": 0,
+        "cost_usd": 0,
+        "overall_score": 70.3394,
+        "detection_eligible": true
+      },
+      "detected": [
+        {
+          "id": "data:unverified_source",
+          "agent_id": "data",
+          "severity": "warning",
+          "rule": "unverified_source",
+          "evidence": [],
+          "correction": "Independently verify the supplied financial evidence",
+          "correctable": false
+        }
+      ],
+      "resolved": [],
+      "iterations": 0
+    },
+    {
+      "scenario": "leveraged",
+      "mode": "single",
+      "injected_faults": true,
+      "metrics": {
+        "numerical_consistency": 0.9375,
+        "evidence_coverage": 0.6666666666666666,
+        "unsupported_claim_rate": 0.33333333333333337,
+        "contradiction_detection": 0,
+        "issue_resolution_rate": null,
+        "classification_consistency": null,
+        "output_completeness": 0.2,
+        "processing_seconds": 0.016970700002275407,
+        "llm_tokens": 0,
+        "cost_usd": 0,
+        "overall_score": null,
+        "detection_eligible": false
+      },
+      "detected": [],
+      "resolved": [],
+      "iterations": 0
+    },
+    {
+      "scenario": "leveraged",
+      "mode": "multi",
+      "injected_faults": true,
+      "metrics": {
+        "numerical_consistency": 0.9607843137254902,
+        "evidence_coverage": 0.9333333333333333,
+        "unsupported_claim_rate": 0.06666666666666665,
+        "contradiction_detection": 0,
+        "issue_resolution_rate": null,
+        "classification_consistency": 1,
+        "output_completeness": 1.0,
+        "processing_seconds": 0.0161021999665536,
+        "llm_tokens": 0,
+        "cost_usd": 0,
+        "overall_score": 90.7309,
+        "detection_eligible": false
+      },
+      "detected": [],
+      "resolved": [],
+      "iterations": 0
+    },
+    {
+      "scenario": "leveraged",
+      "mode": "critic",
+      "injected_faults": true,
+      "metrics": {
+        "numerical_consistency": 0.9607843137254902,
+        "evidence_coverage": 0.9333333333333333,
+        "unsupported_claim_rate": 0.06666666666666665,
+        "contradiction_detection": 1,
+        "issue_resolution_rate": 0.0,
+        "classification_consistency": 1,
+        "output_completeness": 1.0,
+        "processing_seconds": 0.06447540002409369,
+        "llm_tokens": 0,
+        "cost_usd": 0,
+        "overall_score": 90.7309,
+        "detection_eligible": true
+      },
+      "detected": [
+        {
+          "id": "financial:metric_mismatch:current_ratio",
+          "agent_id": "financial",
+          "severity": "error",
+          "rule": "metric_mismatch:current_ratio",
+          "evidence": [
+            "statements:2"
+          ],
+          "correction": "Recompute affected financial metric",
+          "correctable": true
+        },
+        {
+          "id": "financial:unsupported:financial:debt_to_assets",
+          "agent_id": "financial",
+          "severity": "error",
+          "rule": "unsupported:financial:debt_to_assets",
+          "evidence": [
+            "injected:missing-source"
+          ],
+          "correction": "Remove unsupported finding or attach actual evidence",
+          "correctable": true
+        },
+        {
+          "id": "market:score_mismatch",
+          "agent_id": "market",
+          "severity": "error",
+          "rule": "score_mismatch",
+          "evidence": [],
+          "correction": "Recompute score from original inputs",
+          "correctable": true
+        },
+        {
+          "id": "liquidity:contradiction:current_ratio",
+          "agent_id": "liquidity",
+          "severity": "error",
+          "rule": "contradiction:current_ratio",
+          "evidence": [
+            "statements:2"
+          ],
+          "correction": "Reconcile shared ratio against original statement",
+          "correctable": true
+        },
+        {
+          "id": "data:unverified_source",
+          "agent_id": "data",
+          "severity": "warning",
+          "rule": "unverified_source",
+          "evidence": [],
+          "correction": "Independently verify the supplied financial evidence",
+          "correctable": false
+        }
+      ],
+      "resolved": [],
+      "iterations": 0
+    },
+    {
+      "scenario": "leveraged",
+      "mode": "reflection",
+      "injected_faults": true,
+      "metrics": {
+        "numerical_consistency": 1.0,
+        "evidence_coverage": 1.0,
+        "unsupported_claim_rate": 0.0,
+        "contradiction_detection": 1,
+        "issue_resolution_rate": 1.0,
+        "classification_consistency": 1,
+        "output_completeness": 1.0,
+        "processing_seconds": 0.044125900021754205,
+        "llm_tokens": 0,
+        "cost_usd": 0,
+        "overall_score": 70.3394,
+        "detection_eligible": true
+      },
+      "detected": [
+        {
+          "id": "financial:metric_mismatch:current_ratio",
+          "agent_id": "financial",
+          "severity": "error",
+          "rule": "metric_mismatch:current_ratio",
+          "evidence": [
+            "statements:2"
+          ],
+          "correction": "Recompute affected financial metric",
+          "correctable": true
+        },
+        {
+          "id": "financial:unsupported:financial:debt_to_assets",
+          "agent_id": "financial",
+          "severity": "error",
+          "rule": "unsupported:financial:debt_to_assets",
+          "evidence": [
+            "injected:missing-source"
+          ],
+          "correction": "Remove unsupported finding or attach actual evidence",
+          "correctable": true
+        },
+        {
+          "id": "market:score_mismatch",
+          "agent_id": "market",
+          "severity": "error",
+          "rule": "score_mismatch",
+          "evidence": [],
+          "correction": "Recompute score from original inputs",
+          "correctable": true
+        },
+        {
+          "id": "liquidity:contradiction:current_ratio",
+          "agent_id": "liquidity",
+          "severity": "error",
+          "rule": "contradiction:current_ratio",
+          "evidence": [
+            "statements:2"
+          ],
+          "correction": "Reconcile shared ratio against original statement",
+          "correctable": true
+        },
+        {
+          "id": "data:unverified_source",
+          "agent_id": "data",
+          "severity": "warning",
+          "rule": "unverified_source",
+          "evidence": [],
+          "correction": "Independently verify the supplied financial evidence",
+          "correctable": false
+        }
+      ],
+      "resolved": [
+        "financial:metric_mismatch:current_ratio",
+        "financial:unsupported:financial:debt_to_assets",
+        "liquidity:contradiction:current_ratio",
+        "market:score_mismatch"
+      ],
+      "iterations": 1
+    },
+    {
+      "scenario": "volatile",
+      "mode": "single",
+      "injected_faults": false,
+      "metrics": {
+        "numerical_consistency": 1.0,
+        "evidence_coverage": 1.0,
+        "unsupported_claim_rate": 0.0,
+        "contradiction_detection": 0,
+        "issue_resolution_rate": null,
+        "classification_consistency": null,
+        "output_completeness": 0.2,
+        "processing_seconds": 0.014037900022231042,
+        "llm_tokens": 0,
+        "cost_usd": 0,
+        "overall_score": null,
+        "detection_eligible": false
+      },
+      "detected": [],
+      "resolved": [],
+      "iterations": 0
+    },
+    {
+      "scenario": "volatile",
+      "mode": "multi",
+      "injected_faults": false,
+      "metrics": {
+        "numerical_consistency": 1.0,
+        "evidence_coverage": 1.0,
+        "unsupported_claim_rate": 0.0,
+        "contradiction_detection": 0,
+        "issue_resolution_rate": null,
+        "classification_consistency": 1,
+        "output_completeness": 1.0,
+        "processing_seconds": 0.014856500027235597,
+        "llm_tokens": 0,
+        "cost_usd": 0,
+        "overall_score": 60.3696,
+        "detection_eligible": false
+      },
+      "detected": [],
+      "resolved": [],
+      "iterations": 0
+    },
+    {
+      "scenario": "volatile",
+      "mode": "critic",
+      "injected_faults": false,
+      "metrics": {
+        "numerical_consistency": 1.0,
+        "evidence_coverage": 1.0,
+        "unsupported_claim_rate": 0.0,
+        "contradiction_detection": 0,
+        "issue_resolution_rate": null,
+        "classification_consistency": 1,
+        "output_completeness": 1.0,
+        "processing_seconds": 0.017295200028456748,
+        "llm_tokens": 0,
+        "cost_usd": 0,
+        "overall_score": 60.3696,
+        "detection_eligible": true
+      },
+      "detected": [
+        {
+          "id": "data:unverified_source",
+          "agent_id": "data",
+          "severity": "warning",
+          "rule": "unverified_source",
+          "evidence": [],
+          "correction": "Independently verify the supplied financial evidence",
+          "correctable": false
+        }
+      ],
+      "resolved": [],
+      "iterations": 0
+    },
+    {
+      "scenario": "volatile",
+      "mode": "reflection",
+      "injected_faults": false,
+      "metrics": {
+        "numerical_consistency": 1.0,
+        "evidence_coverage": 1.0,
+        "unsupported_claim_rate": 0.0,
+        "contradiction_detection": 0,
+        "issue_resolution_rate": null,
+        "classification_consistency": 1,
+        "output_completeness": 1.0,
+        "processing_seconds": 0.021576999977696687,
+        "llm_tokens": 0,
+        "cost_usd": 0,
+        "overall_score": 60.3696,
+        "detection_eligible": true
+      },
+      "detected": [
+        {
+          "id": "data:unverified_source",
+          "agent_id": "data",
+          "severity": "warning",
+          "rule": "unverified_source",
+          "evidence": [],
+          "correction": "Independently verify the supplied financial evidence",
+          "correctable": false
+        }
+      ],
+      "resolved": [],
+      "iterations": 0
+    },
+    {
+      "scenario": "volatile",
+      "mode": "single",
+      "injected_faults": true,
+      "metrics": {
+        "numerical_consistency": 0.9375,
+        "evidence_coverage": 0.6666666666666666,
+        "unsupported_claim_rate": 0.33333333333333337,
+        "contradiction_detection": 0,
+        "issue_resolution_rate": null,
+        "classification_consistency": null,
+        "output_completeness": 0.2,
+        "processing_seconds": 0.014097200008109212,
+        "llm_tokens": 0,
+        "cost_usd": 0,
+        "overall_score": null,
+        "detection_eligible": false
+      },
+      "detected": [],
+      "resolved": [],
+      "iterations": 0
+    },
+    {
+      "scenario": "volatile",
+      "mode": "multi",
+      "injected_faults": true,
+      "metrics": {
+        "numerical_consistency": 0.9607843137254902,
+        "evidence_coverage": 0.9333333333333333,
+        "unsupported_claim_rate": 0.06666666666666665,
+        "contradiction_detection": 0,
+        "issue_resolution_rate": null,
+        "classification_consistency": 0,
+        "output_completeness": 1.0,
+        "processing_seconds": 0.013878799974918365,
+        "llm_tokens": 0,
+        "cost_usd": 0,
+        "overall_score": 73.0452,
+        "detection_eligible": false
+      },
+      "detected": [],
+      "resolved": [],
+      "iterations": 0
+    },
+    {
+      "scenario": "volatile",
+      "mode": "critic",
+      "injected_faults": true,
+      "metrics": {
+        "numerical_consistency": 0.9607843137254902,
+        "evidence_coverage": 0.9333333333333333,
+        "unsupported_claim_rate": 0.06666666666666665,
+        "contradiction_detection": 1,
+        "issue_resolution_rate": 0.0,
+        "classification_consistency": 0,
+        "output_completeness": 1.0,
+        "processing_seconds": 0.019585900008678436,
+        "llm_tokens": 0,
+        "cost_usd": 0,
+        "overall_score": 73.0452,
+        "detection_eligible": true
+      },
+      "detected": [
+        {
+          "id": "financial:metric_mismatch:current_ratio",
+          "agent_id": "financial",
+          "severity": "error",
+          "rule": "metric_mismatch:current_ratio",
+          "evidence": [
+            "statements:2"
+          ],
+          "correction": "Recompute affected financial metric",
+          "correctable": true
+        },
+        {
+          "id": "financial:unsupported:financial:debt_to_assets",
+          "agent_id": "financial",
+          "severity": "error",
+          "rule": "unsupported:financial:debt_to_assets",
+          "evidence": [
+            "injected:missing-source"
+          ],
+          "correction": "Remove unsupported finding or attach actual evidence",
+          "correctable": true
+        },
+        {
+          "id": "market:score_mismatch",
+          "agent_id": "market",
+          "severity": "error",
+          "rule": "score_mismatch",
+          "evidence": [],
+          "correction": "Recompute score from original inputs",
+          "correctable": true
+        },
+        {
+          "id": "liquidity:contradiction:current_ratio",
+          "agent_id": "liquidity",
+          "severity": "error",
+          "rule": "contradiction:current_ratio",
+          "evidence": [
+            "statements:2"
+          ],
+          "correction": "Reconcile shared ratio against original statement",
+          "correctable": true
+        },
+        {
+          "id": "data:unverified_source",
+          "agent_id": "data",
+          "severity": "warning",
+          "rule": "unverified_source",
+          "evidence": [],
+          "correction": "Independently verify the supplied financial evidence",
+          "correctable": false
+        }
+      ],
+      "resolved": [],
+      "iterations": 0
+    },
+    {
+      "scenario": "volatile",
+      "mode": "reflection",
+      "injected_faults": true,
+      "metrics": {
+        "numerical_consistency": 1.0,
+        "evidence_coverage": 1.0,
+        "unsupported_claim_rate": 0.0,
+        "contradiction_detection": 1,
+        "issue_resolution_rate": 1.0,
+        "classification_consistency": 1,
+        "output_completeness": 1.0,
+        "processing_seconds": 0.03528889996232465,
+        "llm_tokens": 0,
+        "cost_usd": 0,
+        "overall_score": 60.3696,
+        "detection_eligible": true
+      },
+      "detected": [
+        {
+          "id": "financial:metric_mismatch:current_ratio",
+          "agent_id": "financial",
+          "severity": "error",
+          "rule": "metric_mismatch:current_ratio",
+          "evidence": [
+            "statements:2"
+          ],
+          "correction": "Recompute affected financial metric",
+          "correctable": true
+        },
+        {
+          "id": "financial:unsupported:financial:debt_to_assets",
+          "agent_id": "financial",
+          "severity": "error",
+          "rule": "unsupported:financial:debt_to_assets",
+          "evidence": [
+            "injected:missing-source"
+          ],
+          "correction": "Remove unsupported finding or attach actual evidence",
+          "correctable": true
+        },
+        {
+          "id": "market:score_mismatch",
+          "agent_id": "market",
+          "severity": "error",
+          "rule": "score_mismatch",
+          "evidence": [],
+          "correction": "Recompute score from original inputs",
+          "correctable": true
+        },
+        {
+          "id": "liquidity:contradiction:current_ratio",
+          "agent_id": "liquidity",
+          "severity": "error",
+          "rule": "contradiction:current_ratio",
+          "evidence": [
+            "statements:2"
+          ],
+          "correction": "Reconcile shared ratio against original statement",
+          "correctable": true
+        },
+        {
+          "id": "data:unverified_source",
+          "agent_id": "data",
+          "severity": "warning",
+          "rule": "unverified_source",
+          "evidence": [],
+          "correction": "Independently verify the supplied financial evidence",
+          "correctable": false
+        }
+      ],
+      "resolved": [
+        "financial:metric_mismatch:current_ratio",
+        "financial:unsupported:financial:debt_to_assets",
+        "liquidity:contradiction:current_ratio",
+        "market:score_mismatch"
+      ],
+      "iterations": 1
+    }
+  ]
+}

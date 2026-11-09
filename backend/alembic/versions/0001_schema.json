@@ -1,0 +1,922 @@
+[
+  {
+    "name": "organizations",
+    "columns": [
+      {
+        "name": "id",
+        "type": "string",
+        "length": 36,
+        "primary_key": true,
+        "nullable": false
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "length": 200,
+        "primary_key": false,
+        "nullable": false
+      }
+    ],
+    "unique": [],
+    "indexes": []
+  },
+  {
+    "name": "financial_entities",
+    "columns": [
+      {
+        "name": "id",
+        "type": "string",
+        "length": 36,
+        "primary_key": true,
+        "nullable": false
+      },
+      {
+        "name": "org_id",
+        "type": "string",
+        "length": 36,
+        "primary_key": false,
+        "nullable": false,
+        "foreign_key": "organizations.id",
+        "ondelete": null
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "length": 200,
+        "primary_key": false,
+        "nullable": false
+      },
+      {
+        "name": "currency",
+        "type": "string",
+        "length": 3,
+        "primary_key": false,
+        "nullable": false
+      }
+    ],
+    "unique": [],
+    "indexes": [
+      {
+        "name": "ix_financial_entities_org_id",
+        "columns": [
+          "org_id"
+        ],
+        "unique": false
+      }
+    ]
+  },
+  {
+    "name": "users",
+    "columns": [
+      {
+        "name": "id",
+        "type": "string",
+        "length": 36,
+        "primary_key": true,
+        "nullable": false
+      },
+      {
+        "name": "org_id",
+        "type": "string",
+        "length": 36,
+        "primary_key": false,
+        "nullable": false,
+        "foreign_key": "organizations.id",
+        "ondelete": null
+      },
+      {
+        "name": "email",
+        "type": "string",
+        "length": 254,
+        "primary_key": false,
+        "nullable": false
+      },
+      {
+        "name": "password_hash",
+        "type": "string",
+        "length": 300,
+        "primary_key": false,
+        "nullable": false
+      },
+      {
+        "name": "role",
+        "type": "string",
+        "length": 20,
+        "primary_key": false,
+        "nullable": false
+      }
+    ],
+    "unique": [
+      [
+        "email"
+      ]
+    ],
+    "indexes": [
+      {
+        "name": "ix_users_org_id",
+        "columns": [
+          "org_id"
+        ],
+        "unique": false
+      }
+    ]
+  },
+  {
+    "name": "audit_logs",
+    "columns": [
+      {
+        "name": "id",
+        "type": "string",
+        "length": 36,
+        "primary_key": true,
+        "nullable": false
+      },
+      {
+        "name": "org_id",
+        "type": "string",
+        "length": 36,
+        "primary_key": false,
+        "nullable": false,
+        "foreign_key": "organizations.id",
+        "ondelete": null
+      },
+      {
+        "name": "user_id",
+        "type": "string",
+        "length": 36,
+        "primary_key": false,
+        "nullable": true,
+        "foreign_key": "users.id",
+        "ondelete": null
+      },
+      {
+        "name": "action",
+        "type": "string",
+        "length": 100,
+        "primary_key": false,
+        "nullable": false
+      },
+      {
+        "name": "resource_type",
+        "type": "string",
+        "length": 50,
+        "primary_key": false,
+        "nullable": false
+      },
+      {
+        "name": "resource_id",
+        "type": "string",
+        "length": 36,
+        "primary_key": false,
+        "nullable": false
+      },
+      {
+        "name": "timestamp",
+        "type": "datetime",
+        "length": null,
+        "primary_key": false,
+        "nullable": false
+      },
+      {
+        "name": "metadata_json",
+        "type": "json",
+        "length": null,
+        "primary_key": false,
+        "nullable": false
+      }
+    ],
+    "unique": [],
+    "indexes": [
+      {
+        "name": "ix_audit_logs_resource_id",
+        "columns": [
+          "resource_id"
+        ],
+        "unique": false
+      },
+      {
+        "name": "ix_audit_logs_org_id",
+        "columns": [
+          "org_id"
+        ],
+        "unique": false
+      }
+    ]
+  },
+  {
+    "name": "financial_statements",
+    "columns": [
+      {
+        "name": "id",
+        "type": "string",
+        "length": 36,
+        "primary_key": true,
+        "nullable": false
+      },
+      {
+        "name": "org_id",
+        "type": "string",
+        "length": 36,
+        "primary_key": false,
+        "nullable": false,
+        "foreign_key": "organizations.id",
+        "ondelete": null
+      },
+      {
+        "name": "entity_id",
+        "type": "string",
+        "length": 36,
+        "primary_key": false,
+        "nullable": false,
+        "foreign_key": "financial_entities.id",
+        "ondelete": null
+      },
+      {
+        "name": "payload",
+        "type": "json",
+        "length": null,
+        "primary_key": false,
+        "nullable": false
+      },
+      {
+        "name": "created_at",
+        "type": "datetime",
+        "length": null,
+        "primary_key": false,
+        "nullable": false
+      }
+    ],
+    "unique": [],
+    "indexes": [
+      {
+        "name": "ix_financial_statements_org_id",
+        "columns": [
+          "org_id"
+        ],
+        "unique": false
+      },
+      {
+        "name": "ix_financial_statements_entity_id",
+        "columns": [
+          "entity_id"
+        ],
+        "unique": false
+      }
+    ]
+  },
+  {
+    "name": "market_data",
+    "columns": [
+      {
+        "name": "id",
+        "type": "string",
+        "length": 36,
+        "primary_key": true,
+        "nullable": false
+      },
+      {
+        "name": "org_id",
+        "type": "string",
+        "length": 36,
+        "primary_key": false,
+        "nullable": false,
+        "foreign_key": "organizations.id",
+        "ondelete": null
+      },
+      {
+        "name": "entity_id",
+        "type": "string",
+        "length": 36,
+        "primary_key": false,
+        "nullable": false,
+        "foreign_key": "financial_entities.id",
+        "ondelete": null
+      },
+      {
+        "name": "payload",
+        "type": "json",
+        "length": null,
+        "primary_key": false,
+        "nullable": false
+      },
+      {
+        "name": "created_at",
+        "type": "datetime",
+        "length": null,
+        "primary_key": false,
+        "nullable": false
+      }
+    ],
+    "unique": [],
+    "indexes": [
+      {
+        "name": "ix_market_data_entity_id",
+        "columns": [
+          "entity_id"
+        ],
+        "unique": false
+      },
+      {
+        "name": "ix_market_data_org_id",
+        "columns": [
+          "org_id"
+        ],
+        "unique": false
+      }
+    ]
+  },
+  {
+    "name": "portfolios",
+    "columns": [
+      {
+        "name": "id",
+        "type": "string",
+        "length": 36,
+        "primary_key": true,
+        "nullable": false
+      },
+      {
+        "name": "org_id",
+        "type": "string",
+        "length": 36,
+        "primary_key": false,
+        "nullable": false,
+        "foreign_key": "organizations.id",
+        "ondelete": null
+      },
+      {
+        "name": "entity_id",
+        "type": "string",
+        "length": 36,
+        "primary_key": false,
+        "nullable": false,
+        "foreign_key": "financial_entities.id",
+        "ondelete": null
+      },
+      {
+        "name": "payload",
+        "type": "json",
+        "length": null,
+        "primary_key": false,
+        "nullable": false
+      },
+      {
+        "name": "created_at",
+        "type": "datetime",
+        "length": null,
+        "primary_key": false,
+        "nullable": false
+      }
+    ],
+    "unique": [],
+    "indexes": [
+      {
+        "name": "ix_portfolios_org_id",
+        "columns": [
+          "org_id"
+        ],
+        "unique": false
+      },
+      {
+        "name": "ix_portfolios_entity_id",
+        "columns": [
+          "entity_id"
+        ],
+        "unique": false
+      }
+    ]
+  },
+  {
+    "name": "risk_assessments",
+    "columns": [
+      {
+        "name": "id",
+        "type": "string",
+        "length": 36,
+        "primary_key": true,
+        "nullable": false
+      },
+      {
+        "name": "org_id",
+        "type": "string",
+        "length": 36,
+        "primary_key": false,
+        "nullable": false,
+        "foreign_key": "organizations.id",
+        "ondelete": null
+      },
+      {
+        "name": "entity_id",
+        "type": "string",
+        "length": 36,
+        "primary_key": false,
+        "nullable": false,
+        "foreign_key": "financial_entities.id",
+        "ondelete": null
+      },
+      {
+        "name": "created_by",
+        "type": "string",
+        "length": 36,
+        "primary_key": false,
+        "nullable": false,
+        "foreign_key": "users.id",
+        "ondelete": null
+      },
+      {
+        "name": "assessment_type",
+        "type": "string",
+        "length": 50,
+        "primary_key": false,
+        "nullable": false
+      },
+      {
+        "name": "status",
+        "type": "string",
+        "length": 40,
+        "primary_key": false,
+        "nullable": false
+      },
+      {
+        "name": "overall_score",
+        "type": "float",
+        "length": null,
+        "primary_key": false,
+        "nullable": true
+      },
+      {
+        "name": "risk_category",
+        "type": "string",
+        "length": 30,
+        "primary_key": false,
+        "nullable": true
+      },
+      {
+        "name": "model_version",
+        "type": "string",
+        "length": 50,
+        "primary_key": false,
+        "nullable": false
+      },
+      {
+        "name": "input_json",
+        "type": "json",
+        "length": null,
+        "primary_key": false,
+        "nullable": false
+      },
+      {
+        "name": "result_json",
+        "type": "json",
+        "length": null,
+        "primary_key": false,
+        "nullable": true
+      },
+      {
+        "name": "error_message",
+        "type": "string",
+        "length": 500,
+        "primary_key": false,
+        "nullable": true
+      },
+      {
+        "name": "created_at",
+        "type": "datetime",
+        "length": null,
+        "primary_key": false,
+        "nullable": false
+      },
+      {
+        "name": "completed_at",
+        "type": "datetime",
+        "length": null,
+        "primary_key": false,
+        "nullable": true
+      }
+    ],
+    "unique": [],
+    "indexes": [
+      {
+        "name": "ix_risk_assessments_entity_id",
+        "columns": [
+          "entity_id"
+        ],
+        "unique": false
+      },
+      {
+        "name": "ix_risk_assessments_status",
+        "columns": [
+          "status"
+        ],
+        "unique": false
+      },
+      {
+        "name": "ix_risk_assessments_org_id",
+        "columns": [
+          "org_id"
+        ],
+        "unique": false
+      }
+    ]
+  },
+  {
+    "name": "agent_executions",
+    "columns": [
+      {
+        "name": "agent_name",
+        "type": "string",
+        "length": 60,
+        "primary_key": false,
+        "nullable": false
+      },
+      {
+        "name": "execution_status",
+        "type": "string",
+        "length": 30,
+        "primary_key": false,
+        "nullable": false
+      },
+      {
+        "name": "execution_time",
+        "type": "float",
+        "length": null,
+        "primary_key": false,
+        "nullable": false
+      },
+      {
+        "name": "error_message",
+        "type": "string",
+        "length": 500,
+        "primary_key": false,
+        "nullable": true
+      },
+      {
+        "name": "id",
+        "type": "string",
+        "length": 36,
+        "primary_key": true,
+        "nullable": false
+      },
+      {
+        "name": "assessment_id",
+        "type": "string",
+        "length": 36,
+        "primary_key": false,
+        "nullable": false,
+        "foreign_key": "risk_assessments.id",
+        "ondelete": "CASCADE"
+      },
+      {
+        "name": "payload",
+        "type": "json",
+        "length": null,
+        "primary_key": false,
+        "nullable": false
+      },
+      {
+        "name": "created_at",
+        "type": "datetime",
+        "length": null,
+        "primary_key": false,
+        "nullable": false
+      }
+    ],
+    "unique": [],
+    "indexes": [
+      {
+        "name": "ix_agent_executions_assessment_id",
+        "columns": [
+          "assessment_id"
+        ],
+        "unique": false
+      }
+    ]
+  },
+  {
+    "name": "agent_findings",
+    "columns": [
+      {
+        "name": "id",
+        "type": "string",
+        "length": 36,
+        "primary_key": true,
+        "nullable": false
+      },
+      {
+        "name": "assessment_id",
+        "type": "string",
+        "length": 36,
+        "primary_key": false,
+        "nullable": false,
+        "foreign_key": "risk_assessments.id",
+        "ondelete": "CASCADE"
+      },
+      {
+        "name": "payload",
+        "type": "json",
+        "length": null,
+        "primary_key": false,
+        "nullable": false
+      },
+      {
+        "name": "created_at",
+        "type": "datetime",
+        "length": null,
+        "primary_key": false,
+        "nullable": false
+      }
+    ],
+    "unique": [],
+    "indexes": [
+      {
+        "name": "ix_agent_findings_assessment_id",
+        "columns": [
+          "assessment_id"
+        ],
+        "unique": false
+      }
+    ]
+  },
+  {
+    "name": "assets",
+    "columns": [
+      {
+        "name": "id",
+        "type": "string",
+        "length": 36,
+        "primary_key": true,
+        "nullable": false
+      },
+      {
+        "name": "portfolio_id",
+        "type": "string",
+        "length": 36,
+        "primary_key": false,
+        "nullable": false,
+        "foreign_key": "portfolios.id",
+        "ondelete": null
+      },
+      {
+        "name": "symbol",
+        "type": "string",
+        "length": 40,
+        "primary_key": false,
+        "nullable": false
+      },
+      {
+        "name": "weight",
+        "type": "float",
+        "length": null,
+        "primary_key": false,
+        "nullable": false
+      }
+    ],
+    "unique": [],
+    "indexes": [
+      {
+        "name": "ix_assets_portfolio_id",
+        "columns": [
+          "portfolio_id"
+        ],
+        "unique": false
+      }
+    ]
+  },
+  {
+    "name": "critic_reports",
+    "columns": [
+      {
+        "name": "id",
+        "type": "string",
+        "length": 36,
+        "primary_key": true,
+        "nullable": false
+      },
+      {
+        "name": "assessment_id",
+        "type": "string",
+        "length": 36,
+        "primary_key": false,
+        "nullable": false,
+        "foreign_key": "risk_assessments.id",
+        "ondelete": "CASCADE"
+      },
+      {
+        "name": "payload",
+        "type": "json",
+        "length": null,
+        "primary_key": false,
+        "nullable": false
+      },
+      {
+        "name": "created_at",
+        "type": "datetime",
+        "length": null,
+        "primary_key": false,
+        "nullable": false
+      }
+    ],
+    "unique": [],
+    "indexes": [
+      {
+        "name": "ix_critic_reports_assessment_id",
+        "columns": [
+          "assessment_id"
+        ],
+        "unique": false
+      }
+    ]
+  },
+  {
+    "name": "explanations",
+    "columns": [
+      {
+        "name": "id",
+        "type": "string",
+        "length": 36,
+        "primary_key": true,
+        "nullable": false
+      },
+      {
+        "name": "assessment_id",
+        "type": "string",
+        "length": 36,
+        "primary_key": false,
+        "nullable": false,
+        "foreign_key": "risk_assessments.id",
+        "ondelete": "CASCADE"
+      },
+      {
+        "name": "payload",
+        "type": "json",
+        "length": null,
+        "primary_key": false,
+        "nullable": false
+      },
+      {
+        "name": "created_at",
+        "type": "datetime",
+        "length": null,
+        "primary_key": false,
+        "nullable": false
+      }
+    ],
+    "unique": [],
+    "indexes": [
+      {
+        "name": "ix_explanations_assessment_id",
+        "columns": [
+          "assessment_id"
+        ],
+        "unique": false
+      }
+    ]
+  },
+  {
+    "name": "reflection_iterations",
+    "columns": [
+      {
+        "name": "iteration_number",
+        "type": "integer",
+        "length": null,
+        "primary_key": false,
+        "nullable": false
+      },
+      {
+        "name": "id",
+        "type": "string",
+        "length": 36,
+        "primary_key": true,
+        "nullable": false
+      },
+      {
+        "name": "assessment_id",
+        "type": "string",
+        "length": 36,
+        "primary_key": false,
+        "nullable": false,
+        "foreign_key": "risk_assessments.id",
+        "ondelete": "CASCADE"
+      },
+      {
+        "name": "payload",
+        "type": "json",
+        "length": null,
+        "primary_key": false,
+        "nullable": false
+      },
+      {
+        "name": "created_at",
+        "type": "datetime",
+        "length": null,
+        "primary_key": false,
+        "nullable": false
+      }
+    ],
+    "unique": [
+      [
+        "assessment_id",
+        "iteration_number"
+      ]
+    ],
+    "indexes": [
+      {
+        "name": "ix_reflection_iterations_assessment_id",
+        "columns": [
+          "assessment_id"
+        ],
+        "unique": false
+      }
+    ]
+  },
+  {
+    "name": "risk_scores",
+    "columns": [
+      {
+        "name": "id",
+        "type": "string",
+        "length": 36,
+        "primary_key": true,
+        "nullable": false
+      },
+      {
+        "name": "assessment_id",
+        "type": "string",
+        "length": 36,
+        "primary_key": false,
+        "nullable": false,
+        "foreign_key": "risk_assessments.id",
+        "ondelete": "CASCADE"
+      },
+      {
+        "name": "payload",
+        "type": "json",
+        "length": null,
+        "primary_key": false,
+        "nullable": false
+      },
+      {
+        "name": "created_at",
+        "type": "datetime",
+        "length": null,
+        "primary_key": false,
+        "nullable": false
+      }
+    ],
+    "unique": [],
+    "indexes": [
+      {
+        "name": "ix_risk_scores_assessment_id",
+        "columns": [
+          "assessment_id"
+        ],
+        "unique": false
+      }
+    ]
+  },
+  {
+    "name": "stress_test_results",
+    "columns": [
+      {
+        "name": "id",
+        "type": "string",
+        "length": 36,
+        "primary_key": true,
+        "nullable": false
+      },
+      {
+        "name": "assessment_id",
+        "type": "string",
+        "length": 36,
+        "primary_key": false,
+        "nullable": false,
+        "foreign_key": "risk_assessments.id",
+        "ondelete": "CASCADE"
+      },
+      {
+        "name": "payload",
+        "type": "json",
+        "length": null,
+        "primary_key": false,
+        "nullable": false
+      },
+      {
+        "name": "created_at",
+        "type": "datetime",
+        "length": null,
+        "primary_key": false,
+        "nullable": false
+      }
+    ],
+    "unique": [],
+    "indexes": [
+      {
+        "name": "ix_stress_test_results_assessment_id",
+        "columns": [
+          "assessment_id"
+        ],
+        "unique": false
+      }
+    ]
+  }
+]

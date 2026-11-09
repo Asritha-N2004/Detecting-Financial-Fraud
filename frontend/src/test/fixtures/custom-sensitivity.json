@@ -1,0 +1,1228 @@
+{
+  "version": "1",
+  "baseline": {
+    "score": 4.5833,
+    "category": "low",
+    "observed_contribution": 4.583282482129356,
+    "score_interval": [
+      4.583282482129356,
+      4.583282482129356
+    ],
+    "coverage": 1,
+    "contributions": {
+      "financial": 1.445721583652618,
+      "credit": 0.0,
+      "market": 1.1375608984767374,
+      "liquidity": 0.0,
+      "operational": 2.0
+    },
+    "weights": {
+      "credit": 0.2,
+      "market": 0.3,
+      "liquidity": 0.2,
+      "financial": 0.2,
+      "operational": 0.1
+    },
+    "missing_dimensions": [],
+    "methodology": "Fixed-weight bounded scores. Missing dimensions retain weight and contribute [0,100]; no redistribution. Heuristic scores are not calibrated probabilities."
+  },
+  "structural": {
+    "status": "completed",
+    "exposures": {
+      "credit": {
+        "equity": 0.16666666666666666,
+        "total_debt": 0.16666666666666666,
+        "interest_expense": 0.16666666666666666,
+        "operating_income": 0.16666666666666666,
+        "annual_debt_service": 0.16666666666666666,
+        "operating_cash_flow": 0.16666666666666666
+      },
+      "market": {
+        "market_price_history": 1.0
+      },
+      "liquidity": {
+        "current_assets": 0.20833333333333331,
+        "current_liabilities": 0.4583333333333333,
+        "inventory": 0.08333333333333333,
+        "cash": 0.125,
+        "operating_cash_flow": 0.125
+      },
+      "financial": {
+        "total_assets": 0.3333333333333333,
+        "total_debt": 0.16666666666666666,
+        "net_income": 0.3333333333333333,
+        "revenue": 0.16666666666666666
+      },
+      "operational": {
+        "operational:indicator_0:severity": 1.0
+      }
+    },
+    "pairs": [
+      {
+        "first": "credit",
+        "second": "financial",
+        "shared_inputs": [
+          "total_debt"
+        ],
+        "shared_input_fraction": 0.09090909090909091
+      },
+      {
+        "first": "credit",
+        "second": "liquidity",
+        "shared_inputs": [
+          "operating_cash_flow"
+        ],
+        "shared_input_fraction": 0.06666666666666667
+      },
+      {
+        "first": "credit",
+        "second": "market",
+        "shared_inputs": [],
+        "shared_input_fraction": 0.0
+      },
+      {
+        "first": "credit",
+        "second": "operational",
+        "shared_inputs": [],
+        "shared_input_fraction": 0.0
+      },
+      {
+        "first": "market",
+        "second": "liquidity",
+        "shared_inputs": [],
+        "shared_input_fraction": 0.0
+      },
+      {
+        "first": "market",
+        "second": "financial",
+        "shared_inputs": [],
+        "shared_input_fraction": 0.0
+      },
+      {
+        "first": "market",
+        "second": "operational",
+        "shared_inputs": [],
+        "shared_input_fraction": 0.0
+      },
+      {
+        "first": "liquidity",
+        "second": "financial",
+        "shared_inputs": [],
+        "shared_input_fraction": 0.0
+      },
+      {
+        "first": "liquidity",
+        "second": "operational",
+        "shared_inputs": [],
+        "shared_input_fraction": 0.0
+      },
+      {
+        "first": "financial",
+        "second": "operational",
+        "shared_inputs": [],
+        "shared_input_fraction": 0.0
+      }
+    ],
+    "components": [
+      {
+        "dimension": "credit",
+        "id": "credit:debt_to_equity",
+        "metric_refs": [
+          "debt_to_equity"
+        ],
+        "input_fields": [
+          "total_debt",
+          "equity"
+        ],
+        "evidence": [
+          "statements:2"
+        ],
+        "score": 0.0,
+        "within_dimension_weight": 0.3333333333333333,
+        "included": true,
+        "configured_contribution": 0.0
+      },
+      {
+        "dimension": "credit",
+        "id": "credit:interest_coverage",
+        "metric_refs": [
+          "interest_coverage"
+        ],
+        "input_fields": [
+          "operating_income",
+          "interest_expense"
+        ],
+        "evidence": [
+          "statements:2"
+        ],
+        "score": 0.0,
+        "within_dimension_weight": 0.3333333333333333,
+        "included": true,
+        "configured_contribution": 0.0
+      },
+      {
+        "dimension": "credit",
+        "id": "credit:debt_service_coverage",
+        "metric_refs": [
+          "debt_service_coverage"
+        ],
+        "input_fields": [
+          "operating_cash_flow",
+          "annual_debt_service"
+        ],
+        "evidence": [
+          "statements:2"
+        ],
+        "score": 0.0,
+        "within_dimension_weight": 0.3333333333333333,
+        "included": true,
+        "configured_contribution": 0.0
+      },
+      {
+        "dimension": "market",
+        "id": "market:annualized_volatility",
+        "metric_refs": [
+          "annualized_volatility"
+        ],
+        "input_fields": [
+          "market_price_history"
+        ],
+        "evidence": [
+          "portfolio_holdings:0",
+          "portfolio_holdings:1",
+          "portfolio_holdings:2"
+        ],
+        "score": 0.0,
+        "within_dimension_weight": 0.3333333333333333,
+        "included": true,
+        "configured_contribution": 0.0
+      },
+      {
+        "dimension": "market",
+        "id": "market:historical_var",
+        "metric_refs": [
+          "historical_var"
+        ],
+        "input_fields": [
+          "market_price_history"
+        ],
+        "evidence": [
+          "portfolio_holdings:0",
+          "portfolio_holdings:1",
+          "portfolio_holdings:2"
+        ],
+        "score": 4.610709291758713,
+        "within_dimension_weight": 0.3333333333333333,
+        "included": true,
+        "configured_contribution": 0.4610709291758713
+      },
+      {
+        "dimension": "market",
+        "id": "market:maximum_drawdown",
+        "metric_refs": [
+          "maximum_drawdown"
+        ],
+        "input_fields": [
+          "market_price_history"
+        ],
+        "evidence": [
+          "portfolio_holdings:0",
+          "portfolio_holdings:1",
+          "portfolio_holdings:2"
+        ],
+        "score": 6.764899693008662,
+        "within_dimension_weight": 0.3333333333333333,
+        "included": true,
+        "configured_contribution": 0.6764899693008661
+      },
+      {
+        "dimension": "liquidity",
+        "id": "liquidity:current_ratio",
+        "metric_refs": [
+          "current_ratio"
+        ],
+        "input_fields": [
+          "current_assets",
+          "current_liabilities"
+        ],
+        "evidence": [
+          "statements:2"
+        ],
+        "score": 0.0,
+        "within_dimension_weight": 0.25,
+        "included": true,
+        "configured_contribution": 0.0
+      },
+      {
+        "dimension": "liquidity",
+        "id": "liquidity:quick_ratio",
+        "metric_refs": [
+          "quick_ratio"
+        ],
+        "input_fields": [
+          "current_assets",
+          "inventory",
+          "current_liabilities"
+        ],
+        "evidence": [
+          "statements:2"
+        ],
+        "score": 0.0,
+        "within_dimension_weight": 0.25,
+        "included": true,
+        "configured_contribution": 0.0
+      },
+      {
+        "dimension": "liquidity",
+        "id": "liquidity:cash_ratio",
+        "metric_refs": [
+          "cash_ratio"
+        ],
+        "input_fields": [
+          "cash",
+          "current_liabilities"
+        ],
+        "evidence": [
+          "statements:2"
+        ],
+        "score": 0.0,
+        "within_dimension_weight": 0.25,
+        "included": true,
+        "configured_contribution": 0.0
+      },
+      {
+        "dimension": "liquidity",
+        "id": "liquidity:operating_cash_flow_ratio",
+        "metric_refs": [
+          "operating_cash_flow_ratio"
+        ],
+        "input_fields": [
+          "operating_cash_flow",
+          "current_liabilities"
+        ],
+        "evidence": [
+          "statements:2"
+        ],
+        "score": 0.0,
+        "within_dimension_weight": 0.25,
+        "included": true,
+        "configured_contribution": 0.0
+      },
+      {
+        "dimension": "financial",
+        "id": "financial:debt_to_assets",
+        "metric_refs": [
+          "debt_to_assets"
+        ],
+        "input_fields": [
+          "total_debt",
+          "total_assets"
+        ],
+        "evidence": [
+          "statements:2"
+        ],
+        "score": 0.0,
+        "within_dimension_weight": 0.3333333333333333,
+        "included": true,
+        "configured_contribution": 0.0
+      },
+      {
+        "dimension": "financial",
+        "id": "financial:net_margin",
+        "metric_refs": [
+          "net_margin"
+        ],
+        "input_fields": [
+          "net_income",
+          "revenue"
+        ],
+        "evidence": [
+          "statements:2"
+        ],
+        "score": 21.68582375478927,
+        "within_dimension_weight": 0.3333333333333333,
+        "included": true,
+        "configured_contribution": 1.4457215836526178
+      },
+      {
+        "dimension": "financial",
+        "id": "financial:return_on_assets",
+        "metric_refs": [
+          "return_on_assets"
+        ],
+        "input_fields": [
+          "net_income",
+          "total_assets"
+        ],
+        "evidence": [
+          "statements:2"
+        ],
+        "score": 0.0,
+        "within_dimension_weight": 0.3333333333333333,
+        "included": true,
+        "configured_contribution": 0.0
+      },
+      {
+        "dimension": "operational",
+        "id": "operational:indicator_0",
+        "metric_refs": [
+          "indicator_0"
+        ],
+        "input_fields": [
+          "operational:indicator_0:severity"
+        ],
+        "evidence": [
+          "operational:0"
+        ],
+        "score": 20.0,
+        "within_dimension_weight": 1.0,
+        "included": true,
+        "configured_contribution": 2.0
+      }
+    ],
+    "unavailable_dimensions": [],
+    "methodology": "Each score component splits its within-dimension weight equally across its primitive inputs. Weighted Jaccard input reuse = sum(min exposures) / sum(max exposures). This is not empirical correlation or a calibrated redundancy discount."
+  },
+  "empirical": {
+    "status": "unavailable",
+    "reason": "No comparable dimension-score history supplied; one assessment and asset-price covariance cannot establish cross-risk correlation",
+    "minimum_observations": 30
+  },
+  "transfer_steps": [
+    0.05
+  ],
+  "transfers": [
+    {
+      "donor": "credit",
+      "recipient": "market",
+      "requested_transfer": 0.05,
+      "actual_transfer": 0.05,
+      "weights": {
+        "credit": 0.15000000000000002,
+        "market": 0.35,
+        "liquidity": 0.2,
+        "financial": 0.2,
+        "operational": 0.1
+      },
+      "aggregate": {
+        "score": 4.7729,
+        "category": "low",
+        "observed_contribution": 4.7728759652088115,
+        "score_interval": [
+          4.7728759652088115,
+          4.7728759652088115
+        ],
+        "coverage": 1,
+        "contributions": {
+          "financial": 1.445721583652618,
+          "credit": 0.0,
+          "market": 1.3271543815561937,
+          "liquidity": 0.0,
+          "operational": 2.0
+        },
+        "weights": {
+          "credit": 0.15000000000000002,
+          "market": 0.35,
+          "liquidity": 0.2,
+          "financial": 0.2,
+          "operational": 0.1
+        },
+        "missing_dimensions": [],
+        "methodology": "Fixed-weight bounded scores. Missing dimensions retain weight and contribute [0,100]; no redistribution. Heuristic scores are not calibrated probabilities."
+      },
+      "score_change": 0.18959999999999955,
+      "category_changed": false
+    },
+    {
+      "donor": "credit",
+      "recipient": "liquidity",
+      "requested_transfer": 0.05,
+      "actual_transfer": 0.05,
+      "weights": {
+        "credit": 0.15000000000000002,
+        "market": 0.3,
+        "liquidity": 0.25,
+        "financial": 0.2,
+        "operational": 0.1
+      },
+      "aggregate": {
+        "score": 4.5833,
+        "category": "low",
+        "observed_contribution": 4.583282482129356,
+        "score_interval": [
+          4.583282482129356,
+          4.583282482129356
+        ],
+        "coverage": 1,
+        "contributions": {
+          "financial": 1.445721583652618,
+          "credit": 0.0,
+          "market": 1.1375608984767374,
+          "liquidity": 0.0,
+          "operational": 2.0
+        },
+        "weights": {
+          "credit": 0.15000000000000002,
+          "market": 0.3,
+          "liquidity": 0.25,
+          "financial": 0.2,
+          "operational": 0.1
+        },
+        "missing_dimensions": [],
+        "methodology": "Fixed-weight bounded scores. Missing dimensions retain weight and contribute [0,100]; no redistribution. Heuristic scores are not calibrated probabilities."
+      },
+      "score_change": 0.0,
+      "category_changed": false
+    },
+    {
+      "donor": "credit",
+      "recipient": "financial",
+      "requested_transfer": 0.05,
+      "actual_transfer": 0.05,
+      "weights": {
+        "credit": 0.15000000000000002,
+        "market": 0.3,
+        "liquidity": 0.2,
+        "financial": 0.25,
+        "operational": 0.1
+      },
+      "aggregate": {
+        "score": 4.9447,
+        "category": "low",
+        "observed_contribution": 4.94471287804251,
+        "score_interval": [
+          4.94471287804251,
+          4.94471287804251
+        ],
+        "coverage": 1,
+        "contributions": {
+          "financial": 1.8071519795657724,
+          "credit": 0.0,
+          "market": 1.1375608984767374,
+          "liquidity": 0.0,
+          "operational": 2.0
+        },
+        "weights": {
+          "credit": 0.15000000000000002,
+          "market": 0.3,
+          "liquidity": 0.2,
+          "financial": 0.25,
+          "operational": 0.1
+        },
+        "missing_dimensions": [],
+        "methodology": "Fixed-weight bounded scores. Missing dimensions retain weight and contribute [0,100]; no redistribution. Heuristic scores are not calibrated probabilities."
+      },
+      "score_change": 0.3613999999999997,
+      "category_changed": false
+    },
+    {
+      "donor": "credit",
+      "recipient": "operational",
+      "requested_transfer": 0.05,
+      "actual_transfer": 0.05,
+      "weights": {
+        "credit": 0.15000000000000002,
+        "market": 0.3,
+        "liquidity": 0.2,
+        "financial": 0.2,
+        "operational": 0.15000000000000002
+      },
+      "aggregate": {
+        "score": 5.5833,
+        "category": "low",
+        "observed_contribution": 5.583282482129356,
+        "score_interval": [
+          5.583282482129356,
+          5.583282482129356
+        ],
+        "coverage": 1,
+        "contributions": {
+          "financial": 1.445721583652618,
+          "credit": 0.0,
+          "market": 1.1375608984767374,
+          "liquidity": 0.0,
+          "operational": 3.0000000000000004
+        },
+        "weights": {
+          "credit": 0.15000000000000002,
+          "market": 0.3,
+          "liquidity": 0.2,
+          "financial": 0.2,
+          "operational": 0.15000000000000002
+        },
+        "missing_dimensions": [],
+        "methodology": "Fixed-weight bounded scores. Missing dimensions retain weight and contribute [0,100]; no redistribution. Heuristic scores are not calibrated probabilities."
+      },
+      "score_change": 1.0,
+      "category_changed": false
+    },
+    {
+      "donor": "market",
+      "recipient": "credit",
+      "requested_transfer": 0.05,
+      "actual_transfer": 0.05,
+      "weights": {
+        "credit": 0.25,
+        "market": 0.25,
+        "liquidity": 0.2,
+        "financial": 0.2,
+        "operational": 0.1
+      },
+      "aggregate": {
+        "score": 4.3937,
+        "category": "low",
+        "observed_contribution": 4.3936889990499,
+        "score_interval": [
+          4.3936889990499,
+          4.3936889990499
+        ],
+        "coverage": 1,
+        "contributions": {
+          "financial": 1.445721583652618,
+          "credit": 0.0,
+          "market": 0.9479674153972812,
+          "liquidity": 0.0,
+          "operational": 2.0
+        },
+        "weights": {
+          "credit": 0.25,
+          "market": 0.25,
+          "liquidity": 0.2,
+          "financial": 0.2,
+          "operational": 0.1
+        },
+        "missing_dimensions": [],
+        "methodology": "Fixed-weight bounded scores. Missing dimensions retain weight and contribute [0,100]; no redistribution. Heuristic scores are not calibrated probabilities."
+      },
+      "score_change": -0.18960000000000043,
+      "category_changed": false
+    },
+    {
+      "donor": "market",
+      "recipient": "liquidity",
+      "requested_transfer": 0.05,
+      "actual_transfer": 0.05,
+      "weights": {
+        "credit": 0.2,
+        "market": 0.25,
+        "liquidity": 0.25,
+        "financial": 0.2,
+        "operational": 0.1
+      },
+      "aggregate": {
+        "score": 4.3937,
+        "category": "low",
+        "observed_contribution": 4.3936889990499,
+        "score_interval": [
+          4.3936889990499,
+          4.3936889990499
+        ],
+        "coverage": 1,
+        "contributions": {
+          "financial": 1.445721583652618,
+          "credit": 0.0,
+          "market": 0.9479674153972812,
+          "liquidity": 0.0,
+          "operational": 2.0
+        },
+        "weights": {
+          "credit": 0.2,
+          "market": 0.25,
+          "liquidity": 0.25,
+          "financial": 0.2,
+          "operational": 0.1
+        },
+        "missing_dimensions": [],
+        "methodology": "Fixed-weight bounded scores. Missing dimensions retain weight and contribute [0,100]; no redistribution. Heuristic scores are not calibrated probabilities."
+      },
+      "score_change": -0.18960000000000043,
+      "category_changed": false
+    },
+    {
+      "donor": "market",
+      "recipient": "financial",
+      "requested_transfer": 0.05,
+      "actual_transfer": 0.05,
+      "weights": {
+        "credit": 0.2,
+        "market": 0.25,
+        "liquidity": 0.2,
+        "financial": 0.25,
+        "operational": 0.1
+      },
+      "aggregate": {
+        "score": 4.7551,
+        "category": "low",
+        "observed_contribution": 4.755119394963054,
+        "score_interval": [
+          4.755119394963054,
+          4.755119394963054
+        ],
+        "coverage": 1,
+        "contributions": {
+          "financial": 1.8071519795657724,
+          "credit": 0.0,
+          "market": 0.9479674153972812,
+          "liquidity": 0.0,
+          "operational": 2.0
+        },
+        "weights": {
+          "credit": 0.2,
+          "market": 0.25,
+          "liquidity": 0.2,
+          "financial": 0.25,
+          "operational": 0.1
+        },
+        "missing_dimensions": [],
+        "methodology": "Fixed-weight bounded scores. Missing dimensions retain weight and contribute [0,100]; no redistribution. Heuristic scores are not calibrated probabilities."
+      },
+      "score_change": 0.1717999999999993,
+      "category_changed": false
+    },
+    {
+      "donor": "market",
+      "recipient": "operational",
+      "requested_transfer": 0.05,
+      "actual_transfer": 0.05,
+      "weights": {
+        "credit": 0.2,
+        "market": 0.25,
+        "liquidity": 0.2,
+        "financial": 0.2,
+        "operational": 0.15000000000000002
+      },
+      "aggregate": {
+        "score": 5.3937,
+        "category": "low",
+        "observed_contribution": 5.3936889990499,
+        "score_interval": [
+          5.3936889990499,
+          5.3936889990499
+        ],
+        "coverage": 1,
+        "contributions": {
+          "financial": 1.445721583652618,
+          "credit": 0.0,
+          "market": 0.9479674153972812,
+          "liquidity": 0.0,
+          "operational": 3.0000000000000004
+        },
+        "weights": {
+          "credit": 0.2,
+          "market": 0.25,
+          "liquidity": 0.2,
+          "financial": 0.2,
+          "operational": 0.15000000000000002
+        },
+        "missing_dimensions": [],
+        "methodology": "Fixed-weight bounded scores. Missing dimensions retain weight and contribute [0,100]; no redistribution. Heuristic scores are not calibrated probabilities."
+      },
+      "score_change": 0.8103999999999996,
+      "category_changed": false
+    },
+    {
+      "donor": "liquidity",
+      "recipient": "credit",
+      "requested_transfer": 0.05,
+      "actual_transfer": 0.05,
+      "weights": {
+        "credit": 0.25,
+        "market": 0.3,
+        "liquidity": 0.15000000000000002,
+        "financial": 0.2,
+        "operational": 0.1
+      },
+      "aggregate": {
+        "score": 4.5833,
+        "category": "low",
+        "observed_contribution": 4.583282482129356,
+        "score_interval": [
+          4.583282482129356,
+          4.583282482129356
+        ],
+        "coverage": 1,
+        "contributions": {
+          "financial": 1.445721583652618,
+          "credit": 0.0,
+          "market": 1.1375608984767374,
+          "liquidity": 0.0,
+          "operational": 2.0
+        },
+        "weights": {
+          "credit": 0.25,
+          "market": 0.3,
+          "liquidity": 0.15000000000000002,
+          "financial": 0.2,
+          "operational": 0.1
+        },
+        "missing_dimensions": [],
+        "methodology": "Fixed-weight bounded scores. Missing dimensions retain weight and contribute [0,100]; no redistribution. Heuristic scores are not calibrated probabilities."
+      },
+      "score_change": 0.0,
+      "category_changed": false
+    },
+    {
+      "donor": "liquidity",
+      "recipient": "market",
+      "requested_transfer": 0.05,
+      "actual_transfer": 0.05,
+      "weights": {
+        "credit": 0.2,
+        "market": 0.35,
+        "liquidity": 0.15000000000000002,
+        "financial": 0.2,
+        "operational": 0.1
+      },
+      "aggregate": {
+        "score": 4.7729,
+        "category": "low",
+        "observed_contribution": 4.7728759652088115,
+        "score_interval": [
+          4.7728759652088115,
+          4.7728759652088115
+        ],
+        "coverage": 1,
+        "contributions": {
+          "financial": 1.445721583652618,
+          "credit": 0.0,
+          "market": 1.3271543815561937,
+          "liquidity": 0.0,
+          "operational": 2.0
+        },
+        "weights": {
+          "credit": 0.2,
+          "market": 0.35,
+          "liquidity": 0.15000000000000002,
+          "financial": 0.2,
+          "operational": 0.1
+        },
+        "missing_dimensions": [],
+        "methodology": "Fixed-weight bounded scores. Missing dimensions retain weight and contribute [0,100]; no redistribution. Heuristic scores are not calibrated probabilities."
+      },
+      "score_change": 0.18959999999999955,
+      "category_changed": false
+    },
+    {
+      "donor": "liquidity",
+      "recipient": "financial",
+      "requested_transfer": 0.05,
+      "actual_transfer": 0.05,
+      "weights": {
+        "credit": 0.2,
+        "market": 0.3,
+        "liquidity": 0.15000000000000002,
+        "financial": 0.25,
+        "operational": 0.1
+      },
+      "aggregate": {
+        "score": 4.9447,
+        "category": "low",
+        "observed_contribution": 4.94471287804251,
+        "score_interval": [
+          4.94471287804251,
+          4.94471287804251
+        ],
+        "coverage": 1,
+        "contributions": {
+          "financial": 1.8071519795657724,
+          "credit": 0.0,
+          "market": 1.1375608984767374,
+          "liquidity": 0.0,
+          "operational": 2.0
+        },
+        "weights": {
+          "credit": 0.2,
+          "market": 0.3,
+          "liquidity": 0.15000000000000002,
+          "financial": 0.25,
+          "operational": 0.1
+        },
+        "missing_dimensions": [],
+        "methodology": "Fixed-weight bounded scores. Missing dimensions retain weight and contribute [0,100]; no redistribution. Heuristic scores are not calibrated probabilities."
+      },
+      "score_change": 0.3613999999999997,
+      "category_changed": false
+    },
+    {
+      "donor": "liquidity",
+      "recipient": "operational",
+      "requested_transfer": 0.05,
+      "actual_transfer": 0.05,
+      "weights": {
+        "credit": 0.2,
+        "market": 0.3,
+        "liquidity": 0.15000000000000002,
+        "financial": 0.2,
+        "operational": 0.15000000000000002
+      },
+      "aggregate": {
+        "score": 5.5833,
+        "category": "low",
+        "observed_contribution": 5.583282482129356,
+        "score_interval": [
+          5.583282482129356,
+          5.583282482129356
+        ],
+        "coverage": 1,
+        "contributions": {
+          "financial": 1.445721583652618,
+          "credit": 0.0,
+          "market": 1.1375608984767374,
+          "liquidity": 0.0,
+          "operational": 3.0000000000000004
+        },
+        "weights": {
+          "credit": 0.2,
+          "market": 0.3,
+          "liquidity": 0.15000000000000002,
+          "financial": 0.2,
+          "operational": 0.15000000000000002
+        },
+        "missing_dimensions": [],
+        "methodology": "Fixed-weight bounded scores. Missing dimensions retain weight and contribute [0,100]; no redistribution. Heuristic scores are not calibrated probabilities."
+      },
+      "score_change": 1.0,
+      "category_changed": false
+    },
+    {
+      "donor": "financial",
+      "recipient": "credit",
+      "requested_transfer": 0.05,
+      "actual_transfer": 0.05,
+      "weights": {
+        "credit": 0.25,
+        "market": 0.3,
+        "liquidity": 0.2,
+        "financial": 0.15000000000000002,
+        "operational": 0.1
+      },
+      "aggregate": {
+        "score": 4.2219,
+        "category": "low",
+        "observed_contribution": 4.221852086216201,
+        "score_interval": [
+          4.221852086216201,
+          4.221852086216201
+        ],
+        "coverage": 1,
+        "contributions": {
+          "financial": 1.0842911877394636,
+          "credit": 0.0,
+          "market": 1.1375608984767374,
+          "liquidity": 0.0,
+          "operational": 2.0
+        },
+        "weights": {
+          "credit": 0.25,
+          "market": 0.3,
+          "liquidity": 0.2,
+          "financial": 0.15000000000000002,
+          "operational": 0.1
+        },
+        "missing_dimensions": [],
+        "methodology": "Fixed-weight bounded scores. Missing dimensions retain weight and contribute [0,100]; no redistribution. Heuristic scores are not calibrated probabilities."
+      },
+      "score_change": -0.3614000000000006,
+      "category_changed": false
+    },
+    {
+      "donor": "financial",
+      "recipient": "market",
+      "requested_transfer": 0.05,
+      "actual_transfer": 0.05,
+      "weights": {
+        "credit": 0.2,
+        "market": 0.35,
+        "liquidity": 0.2,
+        "financial": 0.15000000000000002,
+        "operational": 0.1
+      },
+      "aggregate": {
+        "score": 4.4114,
+        "category": "low",
+        "observed_contribution": 4.411445569295657,
+        "score_interval": [
+          4.411445569295657,
+          4.411445569295657
+        ],
+        "coverage": 1,
+        "contributions": {
+          "financial": 1.0842911877394636,
+          "credit": 0.0,
+          "market": 1.3271543815561937,
+          "liquidity": 0.0,
+          "operational": 2.0
+        },
+        "weights": {
+          "credit": 0.2,
+          "market": 0.35,
+          "liquidity": 0.2,
+          "financial": 0.15000000000000002,
+          "operational": 0.1
+        },
+        "missing_dimensions": [],
+        "methodology": "Fixed-weight bounded scores. Missing dimensions retain weight and contribute [0,100]; no redistribution. Heuristic scores are not calibrated probabilities."
+      },
+      "score_change": -0.17189999999999994,
+      "category_changed": false
+    },
+    {
+      "donor": "financial",
+      "recipient": "liquidity",
+      "requested_transfer": 0.05,
+      "actual_transfer": 0.05,
+      "weights": {
+        "credit": 0.2,
+        "market": 0.3,
+        "liquidity": 0.25,
+        "financial": 0.15000000000000002,
+        "operational": 0.1
+      },
+      "aggregate": {
+        "score": 4.2219,
+        "category": "low",
+        "observed_contribution": 4.221852086216201,
+        "score_interval": [
+          4.221852086216201,
+          4.221852086216201
+        ],
+        "coverage": 1,
+        "contributions": {
+          "financial": 1.0842911877394636,
+          "credit": 0.0,
+          "market": 1.1375608984767374,
+          "liquidity": 0.0,
+          "operational": 2.0
+        },
+        "weights": {
+          "credit": 0.2,
+          "market": 0.3,
+          "liquidity": 0.25,
+          "financial": 0.15000000000000002,
+          "operational": 0.1
+        },
+        "missing_dimensions": [],
+        "methodology": "Fixed-weight bounded scores. Missing dimensions retain weight and contribute [0,100]; no redistribution. Heuristic scores are not calibrated probabilities."
+      },
+      "score_change": -0.3614000000000006,
+      "category_changed": false
+    },
+    {
+      "donor": "financial",
+      "recipient": "operational",
+      "requested_transfer": 0.05,
+      "actual_transfer": 0.05,
+      "weights": {
+        "credit": 0.2,
+        "market": 0.3,
+        "liquidity": 0.2,
+        "financial": 0.15000000000000002,
+        "operational": 0.15000000000000002
+      },
+      "aggregate": {
+        "score": 5.2219,
+        "category": "low",
+        "observed_contribution": 5.2218520862162014,
+        "score_interval": [
+          5.2218520862162014,
+          5.2218520862162014
+        ],
+        "coverage": 1,
+        "contributions": {
+          "financial": 1.0842911877394636,
+          "credit": 0.0,
+          "market": 1.1375608984767374,
+          "liquidity": 0.0,
+          "operational": 3.0000000000000004
+        },
+        "weights": {
+          "credit": 0.2,
+          "market": 0.3,
+          "liquidity": 0.2,
+          "financial": 0.15000000000000002,
+          "operational": 0.15000000000000002
+        },
+        "missing_dimensions": [],
+        "methodology": "Fixed-weight bounded scores. Missing dimensions retain weight and contribute [0,100]; no redistribution. Heuristic scores are not calibrated probabilities."
+      },
+      "score_change": 0.6385999999999994,
+      "category_changed": false
+    },
+    {
+      "donor": "operational",
+      "recipient": "credit",
+      "requested_transfer": 0.05,
+      "actual_transfer": 0.05,
+      "weights": {
+        "credit": 0.25,
+        "market": 0.3,
+        "liquidity": 0.2,
+        "financial": 0.2,
+        "operational": 0.05
+      },
+      "aggregate": {
+        "score": 3.5833,
+        "category": "low",
+        "observed_contribution": 3.5832824821293556,
+        "score_interval": [
+          3.5832824821293556,
+          3.5832824821293556
+        ],
+        "coverage": 1,
+        "contributions": {
+          "financial": 1.445721583652618,
+          "credit": 0.0,
+          "market": 1.1375608984767374,
+          "liquidity": 0.0,
+          "operational": 1.0
+        },
+        "weights": {
+          "credit": 0.25,
+          "market": 0.3,
+          "liquidity": 0.2,
+          "financial": 0.2,
+          "operational": 0.05
+        },
+        "missing_dimensions": [],
+        "methodology": "Fixed-weight bounded scores. Missing dimensions retain weight and contribute [0,100]; no redistribution. Heuristic scores are not calibrated probabilities."
+      },
+      "score_change": -1.0000000000000004,
+      "category_changed": false
+    },
+    {
+      "donor": "operational",
+      "recipient": "market",
+      "requested_transfer": 0.05,
+      "actual_transfer": 0.05,
+      "weights": {
+        "credit": 0.2,
+        "market": 0.35,
+        "liquidity": 0.2,
+        "financial": 0.2,
+        "operational": 0.05
+      },
+      "aggregate": {
+        "score": 3.7729,
+        "category": "low",
+        "observed_contribution": 3.7728759652088115,
+        "score_interval": [
+          3.7728759652088115,
+          3.7728759652088115
+        ],
+        "coverage": 1,
+        "contributions": {
+          "financial": 1.445721583652618,
+          "credit": 0.0,
+          "market": 1.3271543815561937,
+          "liquidity": 0.0,
+          "operational": 1.0
+        },
+        "weights": {
+          "credit": 0.2,
+          "market": 0.35,
+          "liquidity": 0.2,
+          "financial": 0.2,
+          "operational": 0.05
+        },
+        "missing_dimensions": [],
+        "methodology": "Fixed-weight bounded scores. Missing dimensions retain weight and contribute [0,100]; no redistribution. Heuristic scores are not calibrated probabilities."
+      },
+      "score_change": -0.8104000000000005,
+      "category_changed": false
+    },
+    {
+      "donor": "operational",
+      "recipient": "liquidity",
+      "requested_transfer": 0.05,
+      "actual_transfer": 0.05,
+      "weights": {
+        "credit": 0.2,
+        "market": 0.3,
+        "liquidity": 0.25,
+        "financial": 0.2,
+        "operational": 0.05
+      },
+      "aggregate": {
+        "score": 3.5833,
+        "category": "low",
+        "observed_contribution": 3.5832824821293556,
+        "score_interval": [
+          3.5832824821293556,
+          3.5832824821293556
+        ],
+        "coverage": 1,
+        "contributions": {
+          "financial": 1.445721583652618,
+          "credit": 0.0,
+          "market": 1.1375608984767374,
+          "liquidity": 0.0,
+          "operational": 1.0
+        },
+        "weights": {
+          "credit": 0.2,
+          "market": 0.3,
+          "liquidity": 0.25,
+          "financial": 0.2,
+          "operational": 0.05
+        },
+        "missing_dimensions": [],
+        "methodology": "Fixed-weight bounded scores. Missing dimensions retain weight and contribute [0,100]; no redistribution. Heuristic scores are not calibrated probabilities."
+      },
+      "score_change": -1.0000000000000004,
+      "category_changed": false
+    },
+    {
+      "donor": "operational",
+      "recipient": "financial",
+      "requested_transfer": 0.05,
+      "actual_transfer": 0.05,
+      "weights": {
+        "credit": 0.2,
+        "market": 0.3,
+        "liquidity": 0.2,
+        "financial": 0.25,
+        "operational": 0.05
+      },
+      "aggregate": {
+        "score": 3.9447,
+        "category": "low",
+        "observed_contribution": 3.94471287804251,
+        "score_interval": [
+          3.94471287804251,
+          3.94471287804251
+        ],
+        "coverage": 1,
+        "contributions": {
+          "financial": 1.8071519795657724,
+          "credit": 0.0,
+          "market": 1.1375608984767374,
+          "liquidity": 0.0,
+          "operational": 1.0
+        },
+        "weights": {
+          "credit": 0.2,
+          "market": 0.3,
+          "liquidity": 0.2,
+          "financial": 0.25,
+          "operational": 0.05
+        },
+        "missing_dimensions": [],
+        "methodology": "Fixed-weight bounded scores. Missing dimensions retain weight and contribute [0,100]; no redistribution. Heuristic scores are not calibrated probabilities."
+      },
+      "score_change": -0.6386000000000003,
+      "category_changed": false
+    }
+  ],
+  "sampled_score_envelope": [
+    3.5832824821293556,
+    5.583282482129356
+  ],
+  "classification_stable": true,
+  "category_changes": 0,
+  "limitations": [
+    "Diagnostic only: the configured assessment score and weights are unchanged",
+    "Transfers explicitly move donor weight to one recipient; no hidden normalization or missing-dimension redistribution",
+    "The envelope covers sampled weight transfers and missing-score bounds only; it is not a confidence interval or global robustness proof",
+    "Shared inputs do not prove double counting; no automatic discount is applied without an externally validated calibration"
+  ]
+}

@@ -1,0 +1,63 @@
+name: Verify
+on: [push, pull_request]
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - run: python -m alembic upgrade head
+      - run: python -m pytest -q
+      - run: python -m app.evaluation
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: corepack enable
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build
+      - run: pnpm test
+  browser:
+    runs-on: ubuntu-latest
+    env:
+      JWT_SECRET: ci-only-isolated-browser-test-secret-32-chars
+      MODEL_PROVIDER: deterministic
+      SPECIALIST_PROVIDER: deterministic
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: pip install -r backend/requirements.txt
+      - run: python -m alembic upgrade head
+        working-directory: backend
+      - run: python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 > "$RUNNER_TEMP/risk-api.log" 2>&1 &
+        working-directory: backend
+      - run: corepack enable && pnpm install --frozen-lockfile
+        working-directory: frontend
+      - run: pnpm exec playwright install --with-deps chromium
+        working-directory: frontend
+      - run: pnpm test:e2e
+        working-directory: frontend
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: browser-failure-artifacts
+          path: |
+            frontend/test-results
+            ${{ runner.temp }}/risk-api.log
